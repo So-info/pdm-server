@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#070b12">
+  <title>Premium Deluxe Motorsport — Los Santos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="nav">
+    <a class="brand" href="#"><span class="brand-symbol">P</span><span><b>PREMIUM DELUXE</b><small>MOTORSPORT · LOS SANTOS</small></span></a>
+    <nav><a href="#catalogue">COLLECTION</a><a href="#about">LA MAISON</a><span class="nav-live"><i></i> SHOWROOM EN LIGNE</span></nav>
+    <button class="icon-btn" id="closeBtn" title="Fermer">✕</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker"><span></span> L'ART DE CONDUIRE</p>
+        <h1>DRIVE<br><em>YOUR</em> LEGACY.</h1>
+        <p class="hero-desc">Les automobiles les plus désirables de Los Santos. Une sélection rare, un service d'exception, votre prochaine histoire commence ici.</p>
+        <a class="hero-cta" href="#catalogue">EXPLORER LA COLLECTION <b>↘</b></a>
+      </div>
+      <div class="hero-art">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-number">01 <span>/ 11</span></div>
+        <div class="hero-image"></div>
+        <div class="hero-caption"><span>PREMIUM SELECTION</span><b>LOS SANTOS · EST. 1984</b></div>
+        <div class="hero-vertical">PREMIUM DELUXE MOTORSPORT</div>
+      </div>
+      <div class="hero-bottom"><span>01 — COLLECTION AUTOMOBILE</span><span>LOS SANTOS, SAN ANDREAS</span><span>SCROLL TO DISCOVER ↓</span></div>
+    </section>
+
+    <section id="catalogue" class="catalog-section">
+      <div class="section-heading"><div><p class="kicker">NOTRE SÉLECTION</p><h2>THE <em>COLLECTION.</em></h2></div><div class="collection-count"><strong id="count">00</strong><span>MODÈLES DISPONIBLES</span></div></div>
+      <div class="filters">
+        <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Rechercher une automobile..."></label>
+        <div id="categories" class="categories"></div>
+        <select id="sort"><option value="featured">Sélection</option><option value="asc">Prix croissant</option><option value="desc">Prix décroissant</option><option value="name">Nom A–Z</option></select>
+      </div>
+      <div id="grid" class="grid"></div>
+      <div id="empty" class="empty hidden">Aucun véhicule trouvé dans cette sélection.</div>
+    </section>
+
+    <section id="about" class="manifesto">
+      <p class="kicker">PREMIUM DELUXE MOTORSPORT</p>
+      <h2>NOT JUST A CAR.<br><em>A STATEMENT.</em></h2>
+      <p>Chaque ligne raconte une histoire. Chaque moteur promet une émotion. Trouvez la voiture qui vous ressemble.</p>
+      <div class="manifesto-mark">PDM<span>LOS SANTOS</span></div>
+    </section>
+  </main>
+
+  <div id="vehicleModal" class="modal hidden">
+    <div class="modal-backdrop" data-dismiss></div>
+    <article class="modal-card">
+      <button class="modal-close" data-dismiss>✕</button>
+      <div class="modal-photo" id="modalPhoto"></div>
+      <div class="modal-info">
+        <p class="kicker" id="modalCategory">COLLECTION</p>
+        <h2 id="modalName">Vehicle name</h2>
+        <p class="modal-model" id="modalModel"></p>
+        <div class="modal-price-label">PRIX DE VENTE</div><div class="modal-price" id="modalPrice"></div>
+        <button class="buy-btn" id="orderBtn">COMMANDER CE VÉHICULE <span>→</span></button>
+        <p class="fineprint">Transaction sécurisée · Paiement traité par le serveur</p>
+      </div>
+    </article>
+  </div>
+
+  <div id="invoiceModal" class="modal hidden">
+    <div class="modal-backdrop" data-dismiss></div>
+    <article class="invoice">
+      <button class="modal-close" data-dismiss>✕</button>
+      <p class="kicker">PREMIUM DELUXE MOTORSPORT · FACTURE</p>
+      <h2>FINALISER <em>VOTRE ACHAT.</em></h2>
+      <div class="invoice-vehicle"><div id="invoicePhoto"></div><div><b id="invoiceName"></b><small id="invoiceModel"></small></div></div>
+      <div class="invoice-total"><span>TOTAL À RÉGLER</span><b id="invoicePrice"></b></div>
+      <div class="payment-methods"><label><input type="radio" name="payment" value="bank" checked><span>COMPTE BANCAIRE</span></label><label><input type="radio" name="payment" value="money"><span>ESPÈCES</span></label></div>
+      <button id="payBtn" class="buy-btn">CONFIRMER ET PAYER <span>→</span></button>
+      <p id="buyMessage" class="feedback"></p>
+    </article>
+  </div>
+
+  <div id="adminModal" class="modal hidden">
+    <div class="modal-backdrop" data-dismiss></div>
+    <article class="admin-panel">
+      <button class="modal-close" data-dismiss>✕</button>
+      <p class="kicker">ESPACE RESTREINT · ADMINISTRATION</p>
+      <h2>GESTION DU <em>CATALOGUE.</em></h2>
+      <p class="admin-intro">Les modifications sont enregistrées directement dans la base SQL du serveur.</p>
+      <form id="adminForm">
+        <div class="form-grid">
+          <label>Nom affiché<input name="name" maxlength="80" required></label>
+          <label>Modèle spawn<input name="model" maxlength="60" pattern="[A-Za-z0-9_-]+" required></label>
+          <label>Prix<input name="price" type="number" min="1" step="1" required></label>
+          <label>Catégorie<input name="category" maxlength="40" placeholder="Sportives" required></label>
+        </div>
+        <button class="buy-btn" type="submit">ENREGISTRER LE VÉHICULE <span>→</span></button>
+      </form>
+      <p id="adminMessage" class="feedback"></p>
+      <div id="adminList" class="admin-list"></div>
+    </article>
+  </div>
+
+  <button id="adminAccess" class="admin-access hidden" title="Administration">⚙</button>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
