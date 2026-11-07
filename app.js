@@ -1,7 +1,7 @@
 (() => {
   const $ = id => document.getElementById(id);
   const state = { catalog: [], currency: '$', payments: ['bank','money'], isAdmin: false, category: 'Toutes', selected: null, pending: null, inFiveM: false };
-  const categories = ['Toutes','Compacts','Coupés','Berlines','Sportives','Sportives classiques','Super','Muscle','Tout-terrain','SUV','Vans','Motos'];
+  const categories = () => ['Toutes', ...new Set(state.catalog.map(v => String(v.category || 'Autres')))].sort((a,b) => a === 'Toutes' ? -1 : b === 'Toutes' ? 1 : a.localeCompare(b,'fr'));
   const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const cash = n => new Intl.NumberFormat('fr-FR').format(Number(n)||0) + ' ' + state.currency;
   const send = (type,payload={}) => window.parent.postMessage({ channel:'PDM_SITE', type, payload }, '*');
@@ -13,10 +13,10 @@
   function imageFor(v) {
     // Les images officielles peuvent être fournies dans assets/ et reliées au champ image.
     // Les images distantes ne sont pas nécessaires au fonctionnement des achats.
-    return v.image || `assets/vehicles/${encodeURIComponent(v.model)}.jpg`;
+    return v.image || `assets/vehicles/${encodeURIComponent(v.model)}.webp`;
   }
   function renderCategories() {
-    $('categories').innerHTML = categories.map(c=>`<button class="cat-btn ${state.category===c?'active':''}" data-category="${esc(c)}">${esc(c)}</button>`).join('');
+    $('categories').innerHTML = categories().map(c=>`<button class="cat-btn ${state.category===c?'active':''}" data-category="${esc(c)}">${esc(c)}</button>`).join('');
     $('categories').querySelectorAll('button').forEach(btn=>btn.addEventListener('click',()=>{state.category=btn.dataset.category;renderCategories();renderCatalog();}));
   }
   function renderCatalog() {

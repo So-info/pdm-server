@@ -1,0 +1,20 @@
+{
+  "project": "Premium Deluxe Motorsport — Ultimate GTA Collection",
+  "scope": "Rockstar GTA universe only; no real-world vehicle addon conversions",
+  "catalog_source": {
+    "name": "FAM Tools Open Data — GTA 5 and FiveM vehicles",
+    "url": "https://fam-tools.com/data/vehicles.json",
+    "source_data": "DurtyFree GTA V data dumps; reference pictures from citizenfx/fivem-docs vehicle model reference",
+    "snapshot": "2026-10-06",
+    "advertised_count": 921,
+    "limitations": "Snapshot is not guaranteed to include the latest GTA Online 1.73 vehicles released after the dataset snapshot."
+  },
+  "latest_official_update": {
+    "name": "GTAV Title Update 1.73",
+    "official_notes": "https://support.rockstargames.com/articles/4vRqEDvjUs9h7nqRUgc8YO/gtav-title-update-1-73-notes-ps5-ps4-xbox-series-x-or-s-xbox-one-pc-enhanced-legacy",
+    "last_updated": "2026-10-27",
+    "note": "Check official notes and add verified spawn names for additions absent from the reference snapshot."
+  },
+  "image_note": "Images downloaded by the sync script are reference pictures provided by the data publisher, not claimed to be original Rockstar source assets. Check the source's usage/IP notice before redistribution.",
+  "usage_notice": "https://fam-tools.com/legal/ip-notice"
+}
